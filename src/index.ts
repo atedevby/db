@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/news", news);
 
 app.use("*", (request, response) => {
-    response.json({
+    response.status(404).json({
         error: true,
         message: "Роут не найден",
     });
