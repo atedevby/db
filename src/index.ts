@@ -1,10 +1,12 @@
-import express from "express"
+import express from "express";
 
-const app = express()
-const port = 5000
+const app = express();
+const port = 5000;
 
 app.get("/", (req, res) => {
-  res.send("Hello Vadim!")
+  res.json({
+      message: 'hello Lepeha'
+  });
 })
 
-app.listen(port, () => console.log(`Запушен на порту ${port}`))
+app.listen(port, () => console.log(`Запушен на порту http://localhost:${port}`));
