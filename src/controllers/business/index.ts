@@ -1,6 +1,7 @@
 import express from "express"
 import { database } from "../../db"
-import { getScheduleForList } from "../../utils/getScheduleForList"
+import { getListForCardBusiness } from "../../utils/getListForCardBusiness"
+import { getTableForCardBusiness } from "../../utils/getTableForCardBusiness"
 
 const router = express.Router()
 
@@ -22,28 +23,30 @@ router.get("/list", async (req, res) => {
 
 router.get("/one/:id", async (req, res) => {
   try {
-    const [main = [], services = [], list = []] = await Promise.all([
-      database("business_card_main").where({
-        id: req.params.id,
-      }),
-      database("business_card_service").where({
-        business_id: req.params.id,
-      }),
-      database("business_card_service_list").where({
-        service_id: req.params.id,
-      }),
-    ])
-    const scheduleForList = await getScheduleForList(list)
+    const [main = [], services = [], list = [], table = []] = await Promise.all(
+      [
+        database("business_card_main").where({
+          id: req.params.id,
+        }),
+        database("business_card_service").where({
+          business_id: req.params.id,
+        }),
+        database("business_card_service_list").where({
+          service_id: req.params.id,
+        }),
+        database("business_card_service_table").where({
+          service_id: req.params.id,
+        }),
+      ]
+    )
 
     if (main.length) {
+      const serviceList = await getListForCardBusiness(list)
+      const serviceTable = await getTableForCardBusiness(table)
       const business = main[0]
       business.services = services[0]
-      business.services.serviceList = list.map((item) => {
-        return {
-          ...item,
-          schedule: scheduleForList[item.id - 1].schedule,
-        }
-      })
+      business.services.serviceList = serviceList
+      business.services.serviceTable = serviceTable
 
       res.status(200).json(business)
     } else {
