@@ -1,5 +1,6 @@
 import express from "express"
 import { database } from "../../db"
+import { getScheduleForList } from "../../utils/getScheduleForList"
 
 const router = express.Router()
 
@@ -32,22 +33,7 @@ router.get("/one/:id", async (req, res) => {
         service_id: req.params.id,
       }),
     ])
-    const sch: { id: number; schedule: { day: string; time: string }[] }[] = []
-    for (let i = 0; i < list.length; i++) {
-      try {
-        const res = await database("business_card_service_list_schedule").where(
-          {
-            service_list_id: list[i].id,
-          }
-        )
-        sch.push({
-          id: list[i].id,
-          schedule: res,
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    const scheduleForList = await getScheduleForList(list)
 
     if (main.length) {
       const business = main[0]
@@ -55,7 +41,7 @@ router.get("/one/:id", async (req, res) => {
       business.services.serviceList = list.map((item) => {
         return {
           ...item,
-          schedule: sch[item.id - 1].schedule,
+          schedule: scheduleForList[item.id - 1].schedule,
         }
       })
 
