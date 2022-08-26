@@ -1,5 +1,6 @@
 import express from "express"
 import { database } from "../../db"
+import { getInfoForCardBusiness } from "../../utils/getInfoForCardBusiness"
 import { getListForCardBusiness } from "../../utils/getListForCardBusiness"
 import { getTableForCardBusiness } from "../../utils/getTableForCardBusiness"
 
@@ -23,8 +24,8 @@ router.get("/list", async (req, res) => {
 
 router.get("/one/:id", async (req, res) => {
   try {
-    const [main = [], services = [], list = [], table = []] = await Promise.all(
-      [
+    const [main = [], services = [], list = [], table = [], info = []] =
+      await Promise.all([
         database("business_card_main").where({
           id: req.params.id,
         }),
@@ -37,16 +38,21 @@ router.get("/one/:id", async (req, res) => {
         database("business_card_service_table").where({
           service_id: req.params.id,
         }),
-      ]
-    )
+        database("business_card_info").where({
+          business_id: req.params.id,
+        }),
+      ])
 
     if (main.length) {
       const serviceList = await getListForCardBusiness(list)
       const serviceTable = await getTableForCardBusiness(table)
+      const information = await getInfoForCardBusiness(info)
+
       const business = main[0]
       business.services = services[0]
       business.services.serviceList = serviceList
       business.services.serviceTable = serviceTable
+      business.information = information
 
       res.status(200).json(business)
     } else {
