@@ -33,7 +33,7 @@ export const getInfoForCardBusiness = async (info: any): Promise<any> => {
         }),
       ])
       sch.push({
-        id: info[i].id,
+        id: i + 1,
         descr: descr,
         contacts: contacts,
         schedule: schedule,
@@ -44,14 +44,14 @@ export const getInfoForCardBusiness = async (info: any): Promise<any> => {
       console.log(error)
     }
   }
-  const result = info.map((item: any) => {
+  const result = info.map((item: any, index: number) => {
     return {
       ...item,
-      descr: sch[item.id - 1].descr,
-      contacts: sch[item.id - 1].contacts,
-      schedule: sch[item.id - 1].schedule,
-      address: sch[item.id - 1].address,
-      social: sch[item.id - 1].social,
+      descr: sch[index].descr,
+      contacts: sch[index].contacts,
+      schedule: sch[index].schedule,
+      address: sch[index].address,
+      social: sch[index].social,
     }
   })
   return result

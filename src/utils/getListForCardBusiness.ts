@@ -5,7 +5,9 @@ interface IList {
   schedule: { day: string; time: string }[]
 }
 
-export const getListForCardBusiness = async (list: IList[]): Promise<IList[]> => {
+export const getListForCardBusiness = async (
+  list: IList[]
+): Promise<IList[]> => {
   const sch: { id: number; schedule: { day: string; time: string }[] }[] = []
   for (let i = 0; i < list.length; i++) {
     try {
@@ -13,17 +15,17 @@ export const getListForCardBusiness = async (list: IList[]): Promise<IList[]> =>
         service_list_id: list[i].id,
       })
       sch.push({
-        id: list[i].id,
+        id: i + 1,
         schedule: res,
       })
     } catch (error) {
       console.log(error)
     }
   }
-  const result = list.map((item) => {
+  const result = list.map((item, index) => {
     return {
       ...item,
-      schedule: sch[item.id - 1].schedule,
+      schedule: sch[index].schedule,
     }
   })
   return result
