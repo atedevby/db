@@ -22,7 +22,7 @@ router.get("/list", async (req, res) => {
   }
 })
 
-router.get("/one/:id", async (req, res) => {
+router.get("/card/:id", async (req, res) => {
   try {
     const [main = [], services = [], list = [], table = [], info = []] =
       await Promise.all([
