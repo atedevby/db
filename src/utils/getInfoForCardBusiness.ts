@@ -22,14 +22,14 @@ export const getInfoForCardBusiness = async (info: any): Promise<any> => {
         database("business_card_info_contacts_content").where({
           info_contacts_id: info[i].id,
         }),
-        database("business_card_info_schedule").where({
-          info_id: info[i].id,
+        database("business_card_info_schedule_content").where({
+          info_schedule_id: info[i].id,
         }),
-        database("business_card_info_address").where({
-          info_id: info[i].id,
+        database("business_card_info_address_content").where({
+          info_address_id: info[i].id,
         }),
-        database("business_card_info_social").where({
-          info_id: info[i].id,
+        database("business_card_info_social_content").where({
+          info_social_id: info[i].id,
         }),
       ])
       sch.push({
