@@ -47,7 +47,9 @@ router.get("/card/:id", async (req, res) => {
 
       const state = main[0]
       state.services = services[0]
-      state.services.serviceList = list
+      if (list.length) {
+        state.services.serviceList = list
+      }
       // business.services.serviceTable = serviceTable
       state.information = information
 
