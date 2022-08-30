@@ -1,8 +1,8 @@
 import express from "express"
 import { database } from "../../db"
-import { getInfoForCardBusiness } from "../../utils/getInfoForCardBusiness"
-import { getListForCardBusiness } from "../../utils/getListForCardBusiness"
-import { getTableForCardBusiness } from "../../utils/getTableForCardBusiness"
+import { getInfoForCardBusiness } from "../../utils/business/getInfoForCardBusiness"
+import { getListForCardBusiness } from "../../utils/business/getListForCardBusiness"
+import { getTableForCardBusiness } from "../../utils/business/getTableForCardBusiness"
 
 const router = express.Router()
 

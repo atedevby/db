@@ -1,10 +1,10 @@
-import { database } from "../db"
+import { database } from "../../db"
 
 // interface IInfo {
 //   id: number
 // }
 
-export const getInfoForCardBusiness = async (info: any): Promise<any> => {
+export const getInfoForCardState = async (info: any): Promise<any> => {
   const sch: { id: number; schedule: { day: string; time: string }[] }[] | any =
     []
   for (let i = 0; i < info.length; i += 1) {
@@ -16,20 +16,20 @@ export const getInfoForCardBusiness = async (info: any): Promise<any> => {
         address = [],
         social = [],
       ] = await Promise.all([
-        database("business_card_info_descr").where({
-          info_id: info[i].id,
+        database("state_card_info_descr").where({
+          state_card_info_id: info[i].id,
         }),
-        database("business_card_info_contacts_content").where({
-          info_contacts_id: info[i].id,
+        database("state_card_info_contacts_content").where({
+          state_card_info_contacts_id: info[i].id,
         }),
-        database("business_card_info_schedule_content").where({
-          info_schedule_id: info[i].id,
+        database("state_card_info_schedule_content").where({
+          state_card_info_schedule_id: info[i].id,
         }),
-        database("business_card_info_address_content").where({
-          info_address_id: info[i].id,
+        database("state_card_info_address_content").where({
+          state_card_info_address_id: info[i].id,
         }),
-        database("business_card_info_social_content").where({
-          info_social_id: info[i].id,
+        database("state_card_info_social_content").where({
+          state_card_info_social_id: info[i].id,
         }),
       ])
       sch.push({

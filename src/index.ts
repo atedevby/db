@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { news } from "./controllers/news";
 import { business } from "./controllers/business";
+import { state } from "./controllers/state";
 const app = express();
 
 const port = 5000;
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/news", news);
 app.use("/business", business);
+app.use("/state", state);
 
 app.use("*", (request, response) => {
     response.status(404).json({

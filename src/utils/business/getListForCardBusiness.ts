@@ -1,4 +1,4 @@
-import { database } from "../db"
+import { database } from "../../db"
 
 interface IList {
   id: number
