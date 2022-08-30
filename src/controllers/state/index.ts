@@ -1,6 +1,7 @@
 import express from "express"
 import { database } from "../../db"
 import { getInfoForCardState } from "../../utils/state/getInfoForCardState"
+import { getListForCardState } from "../../utils/state/getListForCardState"
 
 const router = express.Router()
 
@@ -22,33 +23,31 @@ router.get("/list", async (req, res) => {
 
 router.get("/card/:id", async (req, res) => {
   try {
-    const [main = [], info = []] =
-      await Promise.all([
-        database("state_card_main").where({
-          id: req.params.id,
-        }),
-        // database("business_card_service").where({
-        //   business_id: req.params.id,
-        // }),
-        // database("business_card_service_list").where({
-        //   service_id: req.params.id,
-        // }),
-        // database("business_card_service_table").where({
-        //   service_id: req.params.id,
-        // }),
-        database("state_card_info").where({
-          state_card_main_id: req.params.id,
-        }),
-      ])
+    const [main = [], services = [], list = [], info = []] = await Promise.all([
+      database("state_card_main").where({
+        id: req.params.id,
+      }),
+      database("state_card_service").where({
+        state_card_main_id: req.params.id,
+      }),
+      database("state_card_service_list").where({
+        state_card_service_id: req.params.id,
+      }),
+      // database("business_card_service_table").where({
+      //   service_id: req.params.id,
+      // }),
+      database("state_card_info").where({
+        state_card_main_id: req.params.id,
+      }),
+    ])
 
     if (main.length) {
-      // const serviceList = await getListForCardBusiness(list)
       // const serviceTable = await getTableForCardBusiness(table)
       const information = await getInfoForCardState(info)
 
       const state = main[0]
-      // business.services = services[0]
-      // business.services.serviceList = serviceList
+      state.services = services[0]
+      state.services.serviceList = list
       // business.services.serviceTable = serviceTable
       state.information = information
 
