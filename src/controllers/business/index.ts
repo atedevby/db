@@ -71,4 +71,26 @@ router.get("/card/:id", async (req, res) => {
   }
 })
 
+router.post("/card", async (req, res) => {
+  try {
+    const business = await database("business_card_main").insert({
+      enabled: req.body.enabled,
+      title: req.body.title,
+      descr: req.body.descr,
+      url_for_banner: req.body.url_for_banner,
+      name: req.body.name,
+    })
+
+    res.status(200).json({
+      business,
+    })
+  } catch (err) {
+    console.log(err)
+
+    res.status(200).json({
+      business: [],
+    })
+  }
+})
+
 export const business = router
