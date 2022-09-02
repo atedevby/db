@@ -24,35 +24,46 @@ router.get("/list", async (req, res) => {
 
 router.get("/card/:id", async (req, res) => {
   try {
-    const [main = [], services = [], list = [], table = [], info = []] =
-      await Promise.all([
-        database("business_card_main").where({
-          id: req.params.id,
-        }),
-        database("business_card_service").where({
-          business_id: req.params.id,
-        }),
-        database("business_card_service_list").where({
-          service_id: req.params.id,
-        }),
-        database("business_card_service_table").where({
-          service_id: req.params.id,
-        }),
-        database("business_card_info").where({
-          business_id: req.params.id,
-        }),
-      ])
+    const [
+      main = [],
+      services = [],
+      list = [],
+      table = [],
+      info = [],
+      gallery = [],
+    ] = await Promise.all([
+      database("business_card_main").where({
+        id: req.params.id,
+      }),
+      database("business_card_service").where({
+        business_id: req.params.id,
+      }),
+      database("business_card_service_list").where({
+        service_id: req.params.id,
+      }),
+      database("business_card_service_table").where({
+        service_id: req.params.id,
+      }),
+      database("business_card_info").where({
+        business_id: req.params.id,
+      }),
+      database("business_card_gallery_list").where({
+        business_card_gallery_id: req.params.id,
+      }),
+    ])
 
     if (main.length) {
       const serviceList = await getListForCardBusiness(list)
       const serviceTable = await getTableForCardBusiness(table)
       const information = await getInfoForCardBusiness(info)
+      console.log(555, gallery)
 
       const business = main[0]
       business.services = services[0]
       business.services.serviceList = serviceList
       business.services.serviceTable = serviceTable
       business.information = information
+      business.gallery = gallery
 
       res.status(200).json(business)
     } else {
