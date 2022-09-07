@@ -92,14 +92,19 @@ router.post("/card", async (req, res) => {
       name: req.body.name,
     })
 
-    res.status(200).json({
-      business,
-    })
-  } catch (err) {
-    console.log(err)
+    const id = business[0];
 
     res.status(200).json({
-      business: [],
+      id: id,
+      success: true,
+      message: 'Карточка добавлена'
+    })
+  } catch (err) {
+    console.error(err)
+
+    res.status(500).json({
+      error: true,
+      message: 'Внутренняя ошибка'
     })
   }
 })
