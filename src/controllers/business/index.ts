@@ -84,27 +84,54 @@ router.get("/card/:id", async (req, res) => {
 
 router.post("/card", async (req, res) => {
   try {
-    const business = await database("business_card_main").insert({
-      enabled: req.body.enabled,
-      title: req.body.title,
-      descr: req.body.descr,
-      url_for_banner: req.body.url_for_banner,
-      name: req.body.name,
+    const business: any = await database("business_card_main").insert({
+      enabled: req.body.main.enabled,
+      title: req.body.main.title,
+      descr: req.body.main.descr,
+      url_for_banner: req.body.main.url_for_banner,
+      name: req.body.main.name,
     })
-
-    const id = business[0];
+    const id = req.body.mainId
+    const [services = [], list = []] =
+      // table = [], info = [], gallery = []
+      await Promise.all([
+        database("business_card_service").insert({
+          business_id: id,
+          name: req.body.main.services.name,
+        }),
+        database("business_card_service_list").where({
+          service_id: id,
+          enabled: req.body.main.services.list.enabled,
+          title: req.body.main.services.list.title,
+          price: req.body.main.services.list.price,
+          descr: req.body.main.services.list.descr,
+          name: req.body.main.services.list.name,
+        }),
+        // database("business_card_service_table").where({
+        //   service_id: id,
+        // }),
+        // database("business_card_info").where({
+        //   business_id: id,
+        // }),
+        // database("business_card_gallery_list").where({
+        //   business_card_gallery_id: id,
+        // }),
+      ])
+    business.services = services
+    business.servicesList = list
 
     res.status(200).json({
       id: id,
       success: true,
-      message: 'Карточка добавлена'
+      message: "Карточка добавлена",
+      business,
     })
   } catch (err) {
     console.error(err)
 
     res.status(500).json({
       error: true,
-      message: 'Внутренняя ошибка'
+      message: "Внутренняя ошибка",
     })
   }
 })
