@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.post("/news", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
       const news: any = await daksDB("news").insert({
         enabled: req.body.enabled,
