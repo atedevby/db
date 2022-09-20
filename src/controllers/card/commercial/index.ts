@@ -19,7 +19,7 @@ export const getList = async (req:any, res:any) => {
       }
 }
 
-export const getCurrentCard = async (req:any, res:any) => {
+export const setCurrentCard = async (req:any, res:any) => {
     try {
         const commercial: any = await daksDB("cards_business").insert({
             id: req.body.main.id,
