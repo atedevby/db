@@ -1,25 +1,27 @@
-import express from "express";
-import cors from "cors";
-import { news } from "./controllers/news";
-import { business } from "./controllers/business";
-import { state } from "./controllers/state";
-const app = express();
+import express from "express"
+import cors from "cors"
+import { news } from "./controllers/news"
+import { business } from "./controllers/business"
+import { state } from "./controllers/state"
+import { users } from "./routes/users"
+const app = express()
 
-const port = 5000;
+const port = 5000
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-app.use("/news", news);
-app.use("/business", business);
-app.use("/state", state);
+app.use("/news", news)
+app.use("/business", business)
+app.use("/state", state)
+app.use("/users", users)
 
 app.use("*", (request, response) => {
-    response.status(404).json({
-        error: true,
-        message: "Роут не найден",
-    });
-});
+  response.status(404).json({
+    error: true,
+    message: "Роут не найден",
+  })
+})
 
-app.listen(port, () => console.log(`Running on port http://localhost:${port}`));
+app.listen(port, () => console.log(`Running on port http://localhost:${port}`))
