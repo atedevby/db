@@ -4,6 +4,7 @@ import { news } from "./controllers/news"
 import { business } from "./controllers/business"
 import { state } from "./controllers/state"
 import { users } from "./routes/users"
+import { players } from "./routes/players"
 import { commercial } from "./routes/card/commercial"
 import { donate } from "./routes/donate"
 const app = express()
@@ -18,6 +19,7 @@ app.use("/news", news)
 app.use("/business", business)
 app.use("/state", state)
 app.use("/users", users)
+app.use("/players", players)
 app.use("/commercial", commercial)
 app.use("/donate", donate)
 
