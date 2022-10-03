@@ -40,7 +40,7 @@ export const setPageNews = async (req: any, res: any) => {
     console.log(error)
     res.status(500).json({
       error: true,
-      message: "Внутренняя ошибка",
+      message: JSON.stringify(error),
     })
   }
 
