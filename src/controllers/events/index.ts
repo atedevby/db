@@ -25,7 +25,7 @@ export const getList = async (req: any, res: any) => {
 }
 
 export const setPageNews = async (req: any, res: any) => {
-  const image = req.file.buffer.toString("base64")
+  const url_for_image = req.file.buffer.toString("base64")
   const { title, date, description, password } = req.body
   try {
     if (password === "admin250819") {
@@ -33,7 +33,7 @@ export const setPageNews = async (req: any, res: any) => {
         title: title,
         date: date,
         description: description,
-        url_for_image: image,
+        url_for_image: url_for_image,
       })
       res.status(200).json({
         result,
