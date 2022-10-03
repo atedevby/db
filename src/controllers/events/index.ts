@@ -34,6 +34,8 @@ export const setPageNews = async (req: any, res: any) => {
     (error: any, result: any) => {
       if (error) {
         console.log(error)
+      } else {
+        res.send(result)
       }
     }
   )
