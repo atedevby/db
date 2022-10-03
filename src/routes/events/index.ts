@@ -12,7 +12,7 @@ const router = Router()
 
 router.get("/list", getList)
 router.get("/pageNews/:id", getPageNews)
-router.post("/post", upload.single("image"), setPageNews)
+router.post("/post", setPageNews)
 router.post("/delete/:id", deletePageNews)
 
 // router.get("/card/commercial/:id", getCurrentCard)
