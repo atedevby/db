@@ -27,7 +27,7 @@ export const getList = async (req: any, res: any) => {
 export const setPageNews = async (req: any, res: any) => {
   const { title, date, description, url_for_image } = req.body
   const sqlInsert =
-    "INSERT INTO `news` (`id`, `title`, `date`, `description`, `url_for_image`) VALUES (NULL, '', '', '', '')"
+    "INSERT INTO `news` (`id`, `title`, `date`, `description`, `url_for_image`) VALUES (NULL, ?, ?, ?, ?)"
   mfc.query(
     sqlInsert,
     [title, date, description, url_for_image],
