@@ -5,6 +5,7 @@ import { business } from "./controllers/business"
 import { state } from "./controllers/state"
 import { users } from "./routes/users"
 import { players } from "./routes/players"
+import { events } from "./routes/events"
 import { commercial } from "./routes/card/commercial"
 import { donate } from "./routes/donate"
 const app = express()
@@ -20,6 +21,7 @@ app.use("/business", business)
 app.use("/state", state)
 app.use("/users", users)
 app.use("/players", players)
+app.use("/events", events)
 app.use("/commercial", commercial)
 app.use("/donate", donate)
 
