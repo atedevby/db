@@ -5,23 +5,23 @@ import { mfc } from "../../db"
 // import { getTableForCardBusiness } from "../../utils/business/getTableForCardBusiness"
 
 export const getList = async (req: any, res: any) => {
-  const sqlGet = "SELECT * FROM news"
-  mfc.query(sqlGet, (error: any, result: any) => {
-    res.send(result)
-  })
-  //   try {
-  //     const news = await mfc("news")
+//   const sqlGet = "SELECT * FROM news"
+//   mfc.query(sqlGet, (error: any, result: any) => {
+//     res.send(result)
+//   })
+    try {
+      const news = await mfc("news")
 
-  //     res.status(200).json({
-  //         news,
-  //     })
-  //   } catch (err) {
-  //     console.log(err)
+      res.status(200).json({
+          news,
+      })
+    } catch (err) {
+      console.log(err)
 
-  //     res.status(200).json({
-  //         news: [],
-  //     })
-  //   }
+      res.status(200).json({
+          news: [],
+      })
+    }
 }
 
 export const setPageNews = async (req: any, res: any) => {
