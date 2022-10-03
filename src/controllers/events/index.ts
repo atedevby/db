@@ -37,12 +37,17 @@ export const setPageNews = async (req: any, res: any) => {
       res.status(200).json({
         result,
       })
+    } else {
+      res.status(500).json({
+        error: true,
+        message: "Неверный пароль",
+      })
     }
   } catch (error) {
     console.log(error)
     res.status(500).json({
       error: true,
-      message: JSON.stringify(error),
+      message: "Внутреняя ошибка",
     })
   }
 
