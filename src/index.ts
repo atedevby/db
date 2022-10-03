@@ -1,3 +1,4 @@
+// @ts-nocheck
 import express from "express"
 import cors from "cors"
 import { news } from "./controllers/news"

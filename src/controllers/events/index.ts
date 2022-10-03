@@ -25,17 +25,44 @@ export const getList = async (req: any, res: any) => {
 }
 
 export const setPageNews = async (req: any, res: any) => {
-  const { title, date, description, url_for_image, password } = req.body
+  const image = req.file.buffer.toString("base64")
+  const { title, date, description, password } = req.body
   try {
     if (password === "admin250819") {
       const result = await mfc("news").insert({
         title: title,
         date: date,
         description: description,
-        url_for_image: url_for_image,
+        url_for_image: image,
       })
       res.status(200).json({
         result,
+      })
+    } else {
+      res.status(500).json({
+        error: true,
+        message: "Неверный пароль",
+      })
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      error: true,
+      message: "Внутреняя ошибка",
+    })
+  }
+}
+
+export const deletePageNews = async (req: any, res: any) => {
+  const { id } = req.params
+  try {
+    if (password === "admin250819") {
+      await mfc("news").delete({
+        id,
+      })
+      res.status(200).json({
+        error: true,
+        message: "Новость удалена",
       })
     } else {
       res.status(500).json({
