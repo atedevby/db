@@ -26,19 +26,33 @@ export const getList = async (req: any, res: any) => {
 
 export const setPageNews = async (req: any, res: any) => {
   const { title, date, description, url_for_image } = req.body
-  const sqlInsert =
-    "INSERT INTO `news` (`id`, `title`, `date`, `description`, `url_for_image`) VALUES (NULL, ?, ?, ?, ?)"
-  mfc.query(
-    sqlInsert,
-    [title, date, description, url_for_image],
-    (error: any, result: any) => {
-      if (error) {
-        console.log(error)
-      } else {
-        res.send(result)
-      }
-    }
-  )
+  try {
+    const result = await mfc("news").insert({
+      title,
+      date,
+      description,
+      url_for_image,
+    })
+    res.status(200).json({
+      result,
+    })
+  } catch (error) {
+    console.log(error)
+  }
+
+  //   const sqlInsert =
+  //     "INSERT INTO `news` (`id`, `title`, `date`, `description`, `url_for_image`) VALUES (NULL, ?, ?, ?, ?)"
+  //   mfc.query(
+  //     sqlInsert,
+  //     [title, date, description, url_for_image],
+  //     (error: any, result: any) => {
+  //       if (error) {
+  //         console.log(error)
+  //       } else {
+  //         res.send(result)
+  //       }
+  //     }
+  //   )
   //   try {
   //     const news = await mfc("news")
 
