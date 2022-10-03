@@ -28,10 +28,10 @@ export const setPageNews = async (req: any, res: any) => {
   const { title, date, description, url_for_image } = req.body
   try {
     const result = await mfc("news").insert({
-      title,
-      date,
-      description,
-      url_for_image,
+      title: title,
+      date: date,
+      description: description,
+      url_for_image: url_for_image,
     })
     res.status(200).json({
       result,
