@@ -25,20 +25,15 @@ export const getList = async (req: any, res: any) => {
 }
 
 export const setPageNews = async (req: any, res: any) => {
-  //   const url_for_image = req.file.buffer.toString("base64")
-  const { title, date, description, password } = req.body
-  const { name, data } = req.file.pic
+  const { title, date, description, url_for_image, password } = req.body
   try {
-    if (password === "admin250819") {
-      const result = await mfc("news")
-        .insert({
-          title: title,
-          date: date,
-          name: name,
-          description: description,
-          url_for_image: data,
-        })
-        .into("image")
+    if (password === "admin") {
+      const result = await mfc("news").insert({
+        title: title,
+        date: date,
+        description: description,
+        url_for_image: url_for_image,
+      })
       res.status(200).json({
         result,
       })
