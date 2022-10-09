@@ -9,6 +9,7 @@ import { players } from "./routes/players"
 import { events } from "./routes/events"
 import { commercial } from "./routes/card/commercial"
 import { donate } from "./routes/donate"
+import { cities } from "./routes/cities"
 const app = express()
 
 const port = 5000
@@ -16,7 +17,6 @@ const port = 5000
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
 
 app.use("/news", news)
 app.use("/business", business)
@@ -26,7 +26,7 @@ app.use("/players", players)
 app.use("/events", events)
 app.use("/commercial", commercial)
 app.use("/donate", donate)
-
+app.use("/cities", cities)
 
 app.use("*", (request, response) => {
   response.status(404).json({
