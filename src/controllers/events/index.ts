@@ -25,7 +25,7 @@ export const getList = async (req: any, res: any) => {
 }
 
 export const setPageNews = async (req: any, res: any) => {
-  const { title, date, description, url_for_image, password } = req.body
+  const { title, date, description, url_for_image, password,tag } = req.body
   try {
     if (password === "admin") {
       const result = await mfc("news").insert({
@@ -33,6 +33,7 @@ export const setPageNews = async (req: any, res: any) => {
         date: date,
         description: description,
         url_for_image: url_for_image,
+        tag: tag
       })
       res.status(200).json({
         result,

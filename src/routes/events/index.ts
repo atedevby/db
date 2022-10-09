@@ -1,13 +1,11 @@
 //@ts-nocheck
 import { Router } from "express"
-import multer from "multer"
 import {
   getList,
   getPageNews,
   setPageNews,
   deletePageNews,
 } from "../../controllers/events"
-const upload = multer({ storage: multer.memoryStorage() })
 const router = Router()
 
 router.get("/list", getList)
