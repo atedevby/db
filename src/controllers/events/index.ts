@@ -25,24 +25,121 @@ export const getList = async (req: any, res: any) => {
 }
 
 export const setPageNews = async (req: any, res: any) => {
-  const { title, date, description, url_for_image, password,tag } = req.body
+  const {
+    title,
+    date,
+    description,
+    url_for_image,
+    password,
+    tag,
+    nine_image,
+    nine_number,
+    nine_name,
+    enabled,
+    eleven_name,
+    eleven_number,
+    eleven_image,
+    ten_image,
+    ten_name,
+    ten_number,
+    eighth_image,
+    eighth_name,
+    eighth_number,
+    seven_image,
+    seven_name,
+    seven_number,
+    six_image,
+    six_name,
+    six_number,
+    five_image,
+    five_name,
+    five_number,
+    four_image,
+    four_name,
+    four_number,
+    three_image,
+    three_name,
+    three_number,
+    two_image,
+    two_name,
+    two_number,
+    one_image,
+    one_name,
+    one_number,
+    spare,
+  } = req.body
   try {
-    if (password === "admin") {
-      const result = await mfc("news").insert({
-        title: title,
-        date: date,
-        description: description,
-        url_for_image: url_for_image,
-        tag: tag
-      })
-      res.status(200).json({
-        result,
-      })
+    if (enabled === 1) {
+      if (password === "admin") {
+        const result = await mfc("news").insert({
+          title: title,
+          date: date,
+          description: description,
+          url_for_image: url_for_image,
+          tag: tag,
+          eleven_name: eleven_name,
+          eleven_number: eleven_number,
+          eleven_image: eleven_image,
+          ten_image: ten_image,
+          ten_name: ten_name,
+          ten_number: ten_number,
+          nine_image: nine_image,
+          nine_number: nine_number,
+          nine_name: nine_name,
+          eighth_image: eighth_image,
+          eighth_name: eighth_name,
+          eighth_number: eighth_number,
+          seven_image: seven_image,
+          seven_name: seven_name,
+          seven_number: seven_number,
+          six_image: six_image,
+          six_name: six_name,
+          six_number: six_number,
+          five_image: five_image,
+          five_name: five_name,
+          five_number: five_number,
+          four_image: four_image,
+          four_name: four_name,
+          four_number: four_number,
+          three_image: three_image,
+          three_name: three_name,
+          three_number: three_number,
+          two_image: two_image,
+          two_name: two_name,
+          two_number: two_number,
+          one_image: one_image,
+          one_name: one_name,
+          one_number: one_number,
+          spare: spare,
+          enabled: enabled,
+        })
+        res.status(200).json({
+          result,
+        })
+      } else {
+        res.status(500).json({
+          error: true,
+          message: "Неверный пароль",
+        })
+      }
     } else {
-      res.status(500).json({
-        error: true,
-        message: "Неверный пароль",
-      })
+      if (password === "admin") {
+        const result = await mfc("news").insert({
+          title: title,
+          date: date,
+          description: description,
+          url_for_image: url_for_image,
+          tag: tag,
+        })
+        res.status(200).json({
+          result,
+        })
+      } else {
+        res.status(500).json({
+          error: true,
+          message: "Неверный пароль",
+        })
+      }
     }
   } catch (error) {
     console.log(error)
