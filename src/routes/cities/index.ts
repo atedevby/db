@@ -3,7 +3,7 @@ import { setCity, getCities } from "../../controllers/cities"
 const router = Router()
 
 router.get("/list", getCities)
-router.post("/add/:id", setCity)
+router.post("/add", setCity)
 
 // router.get("/card/commercial/:id", getCurrentCard)
 
