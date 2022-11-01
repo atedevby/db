@@ -1,6 +1,6 @@
 import { daksDB } from "../../db"
 
-export const getSum = async (req: any, res: any) => {
+export const getDonate = async (req: any, res: any) => {
   try {
     const donate = await daksDB("donate")
 

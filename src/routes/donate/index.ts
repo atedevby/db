@@ -1,8 +1,8 @@
 import { Router } from "express"
-import { getSum, updateDonateInformation } from "../../controllers/donate"
+import { getDonate, updateDonateInformation } from "../../controllers/donate"
 const router = Router()
 
-router.get("/sum", getSum)
+router.get("/getDonate", getDonate)
 
 // router.get("/card/commercial/:id", getCurrentCard)
 
