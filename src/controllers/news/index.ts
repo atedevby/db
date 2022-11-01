@@ -61,7 +61,7 @@ router.post("/", async (req, res) => {
   
       res.status(200).json({
         success: true,
-        message: "Карточка добавлена",
+        message: "Новость добавлена",
         news
       })
     } catch (err) {
