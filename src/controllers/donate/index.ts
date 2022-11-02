@@ -26,7 +26,8 @@ export const updateDonateDescription = async (req: any, res: any) => {
     })
 
     res.status(200).json({
-      donate,
+      id: donate,
+      message: "Успешно обновлено!",
     })
   } catch (err) {
     console.log(err)
@@ -47,7 +48,8 @@ export const updateDonateBanner = async (req: any, res: any) => {
     })
 
     res.status(200).json({
-      donate,
+      id: donate,
+      message: "Успешно обновлено!",
     })
   } catch (err) {
     console.log(err)
@@ -63,12 +65,13 @@ export const updateDonateSum = async (req: any, res: any) => {
     const { sum } = req.body
     const id = req.params.id
     const donate = await daksDB("donate").update({
-      sum: sum,
       id: id,
+      sum: sum,
     })
 
     res.status(200).json({
-      donate,
+      id: donate,
+      message: "Успешно обновлено!",
     })
   } catch (err) {
     console.log(err)
