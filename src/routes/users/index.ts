@@ -1,8 +1,9 @@
 import { Router } from "express"
-import { getList } from "../../controllers/users"
+import { addUserInDB, getList } from "../../controllers/users"
 const router = Router()
 
 router.get("/list", getList)
+router.put('/createNewUser', addUserInDB )
 
 // router.get("/card/commercial/:id", getCurrentCard)
 

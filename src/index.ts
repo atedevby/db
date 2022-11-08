@@ -10,6 +10,7 @@ import { events } from "./routes/events"
 import { commercial } from "./routes/card/commercial"
 import { donate } from "./routes/donate"
 import { cities } from "./routes/cities"
+import { about } from "./routes/about"
 const app = express()
 
 const port = 5000
@@ -27,6 +28,7 @@ app.use("/events", events)
 app.use("/commercial", commercial)
 app.use("/donate", donate)
 app.use("/cities", cities)
+app.use("/about", about)
 
 app.use("*", (request, response) => {
   response.status(404).json({
