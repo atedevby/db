@@ -28,7 +28,7 @@ export const addUserInDB = async (req: any, res: any) => {
       signed: req.body.signed,
       role: req.body.role,
       uid: req.body.uid,
-      is_agreed_personal_data: req.body.isAgreedPersonalData
+      is_agreed_personal_data: req.body.isAgreedPersonalData,
     })
     res.status(200).json({
       success: true,

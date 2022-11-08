@@ -3,7 +3,7 @@ import { addUserInDB, getList } from "../../controllers/users"
 const router = Router()
 
 router.get("/list", getList)
-router.put('/createNewUser', addUserInDB )
+router.post('/createNewUser', addUserInDB )
 
 // router.get("/card/commercial/:id", getCurrentCard)
 
