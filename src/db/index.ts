@@ -1,4 +1,5 @@
 import knex from "knex"
+import { Sequelize } from "sequelize"
 
 export const database = knex({
   client: "mysql2",
@@ -44,4 +45,9 @@ export const mfc = knex({
     min: 0,
     max: 10,
   },
+})
+
+export const daks = new Sequelize("daks_db", "aksen", "aksen_Adw123dlDa_~asZ", {
+  host: "93.85.88.56",
+  dialect: "mysql",
 })

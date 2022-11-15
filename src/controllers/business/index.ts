@@ -56,7 +56,6 @@ router.get("/card/:id", async (req, res) => {
       const serviceList = await getListForCardBusiness(list)
       const serviceTable = await getTableForCardBusiness(table)
       const information = await getInfoForCardBusiness(info)
-      console.log(555, gallery)
 
       const business = main[0]
       business.services = services[0]
