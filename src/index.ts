@@ -13,8 +13,8 @@ import { donate } from "./routes/donate"
 import { cities } from "./routes/cities"
 import { about } from "./routes/about"
 import NewsRoute from "./routes/news/NewsRoute"
-import VacanciesRoute from "./routes/work/VacanciesRoute"
-import ResumeRoute from "./routes/work/ResumeRoute"
+import VacanciesRoute from "./routes/vacancies/VacanciesRoute"
+import ResumeRoute from "./routes/resumes/ResumeRoute"
 const app = express()
 
 const port = 5000
@@ -36,7 +36,7 @@ app.use("/cities", cities)
 app.use("/about", about)
 app.use(NewsRoute)
 app.use(VacanciesRoute)
-app.use(ResumeRoute)
+// app.use(ResumeRoute)
 
 app.use("*", (request, response) => {
   response.status(404).json({
