@@ -1,6 +1,7 @@
 // @ts-nocheck
 import express from "express"
 import cors from "cors"
+import hpp from "hpp"
 // import { news } from "./controllers/news"
 import { business } from "./controllers/business"
 import { state } from "./controllers/state"
@@ -12,13 +13,16 @@ import { donate } from "./routes/donate"
 import { cities } from "./routes/cities"
 import { about } from "./routes/about"
 import NewsRoute from "./routes/news/NewsRoute"
+import VacanciesRoute from "./routes/work/VacanciesRoute"
+import ResumeRoute from "./routes/work/ResumeRoute"
 const app = express()
 
 const port = 5000
 
 app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json({ limit: "1kb" }))
+app.use(express.urlencoded({ extended: true, limit: "1kb" }))
+app.use(hpp())
 
 // app.use("/news", news)
 app.use("/business", business)
@@ -31,6 +35,8 @@ app.use("/donate", donate)
 app.use("/cities", cities)
 app.use("/about", about)
 app.use(NewsRoute)
+app.use(VacanciesRoute)
+app.use(ResumeRoute)
 
 app.use("*", (request, response) => {
   response.status(404).json({
