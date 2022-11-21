@@ -1,18 +1,18 @@
 import express from "express"
 import {
-  getVacancies,
-  getVacanciesById,
-  createVacancies,
-  updateVacancies,
-  deleteVacancies,
-} from "../../controllers/vacancies"
+  getNews,
+  getNewsById,
+  createNews,
+  updateNews,
+  deleteNews,
+} from "../../controllers/news"
 
 const router = express.Router()
 
-router.get("/vacancies", getVacancies)
-router.get("/vacancies/:id", getVacanciesById)
-router.post("/vacancies", createVacancies)
-router.put("/vacancies/:id", updateVacancies)
-router.delete("/vacancies/:id", deleteVacancies)
+router.get("/news", getNews)
+router.get("/news/:id", getNewsById)
+router.post("/news", createNews)
+router.put("/news/:id", updateNews)
+router.delete("/news/:id", deleteNews)
 
 export default router
