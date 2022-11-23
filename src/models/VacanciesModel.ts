@@ -8,7 +8,6 @@ const Vacancies = daks.define(
   {
     city: DataTypes.STRING,
     title: DataTypes.STRING,
-    sub_title: DataTypes.STRING,
     descr: DataTypes.STRING,
     responsibilities: DataTypes.STRING,
     requirements: DataTypes.STRING,
