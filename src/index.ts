@@ -36,7 +36,7 @@ app.use("/cities", cities)
 app.use("/about", about)
 app.use(NewsRoute)
 app.use(VacanciesRoute)
-// app.use(ResumeRoute)
+app.use(ResumeRoute)
 
 app.use("*", (request, response) => {
   response.status(404).json({
