@@ -9,21 +9,20 @@ const Resumes = daks.define(
     city: DataTypes.STRING,
     name: DataTypes.STRING,
     surname: DataTypes.STRING,
+    descr: DataTypes.STRING,
     dateOfBirth: DataTypes.STRING,
     sex: DataTypes.STRING,
     phone: DataTypes.STRING,
-    title: DataTypes.STRING,
     created: DataTypes.STRING,
     updated: DataTypes.STRING,
-    address: DataTypes.STRING,
+    citizenship: DataTypes.STRING,
     salary: DataTypes.STRING,
-    position: DataTypes.STRING,
-    experience: DataTypes.STRING,
+    profession: DataTypes.STRING,
     author: DataTypes.STRING,
   },
   {
     freezeTableName: true,
-    timestamps: false
+    timestamps: false,
   }
 )
 
