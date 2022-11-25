@@ -10,7 +10,7 @@ const Resumes = daks.define(
     name: DataTypes.STRING,
     surname: DataTypes.STRING,
     descr: DataTypes.STRING,
-    dateOfBirth: DataTypes.STRING,
+    date_of_birth: DataTypes.STRING,
     sex: DataTypes.STRING,
     phone: DataTypes.STRING,
     created: DataTypes.STRING,
