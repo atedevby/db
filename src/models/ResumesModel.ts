@@ -18,6 +18,7 @@ const Resumes = daks.define(
     citizenship: DataTypes.STRING,
     salary: DataTypes.STRING,
     profession: DataTypes.STRING,
+    education: DataTypes.STRING,
     author: DataTypes.STRING,
   },
   {
