@@ -27,6 +27,7 @@ const Resumes = daks.define(
   }
 )
 
+
 export default Resumes
 ;(async () => {
   await daks.sync()
