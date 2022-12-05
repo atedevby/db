@@ -71,11 +71,10 @@ export const updateAboutRatingList = async (req: any, res: any) => {
     //   about_id: 1,
     //   id: idElement
     // })
-    console.log(testId)
     const about = await daksDB("about_rating").update({
       description: description,
       link: link,
-      about_id: 1
+      about_id: testId[0].id
     })
 
     res.status(200).json({

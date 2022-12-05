@@ -14,6 +14,7 @@ import { cities } from "./routes/cities"
 import { about } from "./routes/about"
 import NewsRoute from "./routes/news/NewsRoute"
 import VacanciesRoute from "./routes/vacancies/VacanciesRoute"
+import EntrepreneurRoute from "./routes/entrepreneur/EntrepreneurRoute"
 import ResumeRoute from "./routes/resumes/ResumeRoute"
 const app = express()
 
@@ -36,6 +37,7 @@ app.use("/cities", cities)
 app.use("/about", about)
 app.use(NewsRoute)
 app.use(VacanciesRoute)
+app.use(EntrepreneurRoute)
 app.use(ResumeRoute)
 
 app.use("*", (request, response) => {
