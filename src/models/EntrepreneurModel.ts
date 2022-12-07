@@ -1,5 +1,9 @@
 import { Sequelize } from "sequelize"
 import { daks } from "../db/index"
+import EntrepreneurGalleryModel from "./EntrepreneurGalleryModel"
+import EntrepreneurInfoModel from "./EntrepreneurInfoModel"
+import EntrepreneurList from "./EntrepreneurListModel"
+import EntrepreneurTableModel from "./EntrepreneurTableModel"
 
 const { DataTypes }: any = Sequelize
 
@@ -8,31 +12,12 @@ const Entrepreneur = daks.define(
   {
     city: DataTypes.STRING,
     title: DataTypes.STRING,
-    banner: DataTypes.STRING,
     descr: DataTypes.STRING,
-    list_title: DataTypes.STRING,
-    list_price: DataTypes.STRING,
-    list_date: DataTypes.STRING,
-    list_descr: DataTypes.STRING,
-    table_title_left: DataTypes.STRING,
-    table_descr_left: DataTypes.STRING,
-    table_title_right: DataTypes.STRING,
-    table_descr_right: DataTypes.STRING,
-    table_descr: DataTypes.STRING,
+    banner_id: DataTypes.STRING,
+    banner_url: DataTypes.STRING,
     created: DataTypes.STRING,
     updated: DataTypes.STRING,
     additial: DataTypes.STRING,
-    info_title: DataTypes.STRING,
-    info_descr: DataTypes.STRING,
-    info_contact_phone_icon: DataTypes.STRING,
-    info_contact_phone_number: DataTypes.STRING,
-    info_contact_phone_descr: DataTypes.STRING,
-    info_contact_date_day: DataTypes.STRING,
-    info_contact_date_time: DataTypes.STRING,
-    info_contact_date_descr: DataTypes.STRING,
-    info_contact_address_title: DataTypes.STRING,
-    info_contact_address_link: DataTypes.STRING,
-    info_contact_social_instagram: DataTypes.STRING,
     isBanned: DataTypes.STRING,
   },
   {
@@ -40,6 +25,10 @@ const Entrepreneur = daks.define(
     timestamps: false,
   }
 )
+Entrepreneur.hasMany(EntrepreneurTableModel)
+Entrepreneur.hasMany(EntrepreneurGalleryModel)
+Entrepreneur.hasMany(EntrepreneurInfoModel)
+Entrepreneur.hasMany(EntrepreneurList)
 
 export default Entrepreneur
 ;(async () => {
