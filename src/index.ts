@@ -12,6 +12,7 @@ import { commercial } from "./routes/card/commercial"
 import { donate } from "./routes/donate"
 import { cities } from "./routes/cities"
 import { about } from "./routes/about"
+import { address } from "./routes/address"
 import NewsRoute from "./routes/news/NewsRoute"
 import VacanciesRoute from "./routes/vacancies/VacanciesRoute"
 import EntrepreneurRoute from "./routes/entrepreneur/EntrepreneurRoute"
@@ -35,6 +36,7 @@ app.use("/commercial", commercial)
 app.use("/donate", donate)
 app.use("/cities", cities)
 app.use("/about", about)
+app.use("/address", address)
 app.use(NewsRoute)
 app.use(VacanciesRoute)
 app.use(EntrepreneurRoute)
