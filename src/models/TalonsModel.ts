@@ -7,6 +7,7 @@ const Talons = daks.define(
   "talons",
   {
     number: DataTypes.STRING,
+    time: DataTypes.STRING,
     date: DataTypes.STRING,
     name: DataTypes.STRING,
     cabinet: DataTypes.STRING,
