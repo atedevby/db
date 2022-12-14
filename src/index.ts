@@ -17,6 +17,7 @@ import NewsRoute from "./routes/news/NewsRoute"
 import VacanciesRoute from "./routes/vacancies/VacanciesRoute"
 import EntrepreneurRoute from "./routes/entrepreneur/EntrepreneurRoute"
 import ResumeRoute from "./routes/resumes/ResumeRoute"
+import TalonRoute from "./routes/talons/TalonRoute"
 const app = express()
 
 const port = 5000
@@ -41,6 +42,7 @@ app.use(NewsRoute)
 app.use(VacanciesRoute)
 app.use(EntrepreneurRoute)
 app.use(ResumeRoute)
+app.use(TalonRoute)
 
 app.use("*", (request, response) => {
   response.status(404).json({

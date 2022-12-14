@@ -3,23 +3,18 @@ import { daks } from "../db/index"
 
 const { DataTypes }: any = Sequelize
 
-const Resumes = daks.define(
-  "resumes",
+const Talons = daks.define(
+  "talons",
   {
-    city: DataTypes.STRING,
-    name: DataTypes.STRING,
-    surname: DataTypes.STRING,
-    descr: DataTypes.STRING,
-    date_of_birth: DataTypes.STRING,
-    sex: DataTypes.STRING,
+    first: DataTypes.STRING,
+    second: DataTypes.STRING,
+    third: DataTypes.STRING,
+    street: DataTypes.STRING,
+    flat: DataTypes.STRING,
+    house: DataTypes.STRING,
+    fram: DataTypes.STRING,
     phone: DataTypes.STRING,
-    created: DataTypes.STRING,
-    updated: DataTypes.STRING,
-    citizenship: DataTypes.STRING,
-    salary: DataTypes.STRING,
-    profession: DataTypes.STRING,
-    education: DataTypes.STRING,
-    author: DataTypes.STRING,
+    status: DataTypes.STRING,
   },
   {
     freezeTableName: true,
@@ -27,8 +22,7 @@ const Resumes = daks.define(
   }
 )
 
-
-export default Resumes
+export default Talons
 ;(async () => {
   await daks.sync()
 })()
