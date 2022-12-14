@@ -6,6 +6,10 @@ const { DataTypes }: any = Sequelize
 const Talons = daks.define(
   "talons",
   {
+    number: DataTypes.STRING,
+    date: DataTypes.STRING,
+    name: DataTypes.STRING,
+    cabinet: DataTypes.STRING,
     first: DataTypes.STRING,
     second: DataTypes.STRING,
     third: DataTypes.STRING,
