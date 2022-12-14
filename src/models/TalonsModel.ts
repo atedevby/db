@@ -12,7 +12,7 @@ const Talons = daks.define(
     street: DataTypes.STRING,
     flat: DataTypes.STRING,
     house: DataTypes.STRING,
-    fram: DataTypes.STRING,
+    frame: DataTypes.STRING,
     phone: DataTypes.STRING,
     status: DataTypes.STRING,
   },
